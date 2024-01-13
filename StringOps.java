@@ -97,6 +97,7 @@ public class StringOps {
                 if ( ((ch >= 'A') && (ch <= 'Z'))) // if its capital
                 {
                     news+= ch;
+                    k++;
                 }
                 else 
                 {

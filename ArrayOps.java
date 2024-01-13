@@ -1,9 +1,11 @@
 public class ArrayOps {
     public static void main(String[] args) {
         int[] numbers = {2,8,3,7,8};
+        int[] numbers2 = {2,8,3,7,8, 88};
         System.out.println(findMissingInt(numbers));
         System.out.println(secondMaxValue(numbers));
         System.out.println(isSorted(numbers));
+        System.out.println(containsTheSameElements(numbers, numbers2));
         
     }
     
@@ -42,26 +44,31 @@ public class ArrayOps {
         }
         return newmax;
     }
+    public static boolean inArray(int [] array, int num) {
 
-    public static boolean containsTheSameElements(int [] array1,int [] array2) {
-        int count=0;
-        for (int i=0; i<array1.length; i++)
-        {
-            for ( int j=0; j<array2.length;j++)
-            {
-                if(array1[i]==array2[j])
-                {
-                count++;
-                j=array2.length;
-                }
+        for(int i = 0; i < array.length; i++){
 
+            if((array[i] == num)){
+
+                return true;
             }
-            if (count >= array2.length)
-            return true;
         }
         return false;
     }
+    public static boolean containsTheSameElements(int [] array1,int [] array2) {
 
+            for (int i = 0; i < array2.length; i ++){ 
+                if(!(inArray(array1, array2[i]))){   
+                    return false;
+                }  
+          }
+          for (int i = 0; i < array1.length; i ++){ 
+            if(!(inArray(array2, array1[i]))){   
+                return false;
+            }
+        }
+       return true;
+        }
     public static boolean isSorted(int [] array) {
         int keep = array[0];
         if(keep <= array[1]) // going up
