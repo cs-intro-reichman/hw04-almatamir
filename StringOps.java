@@ -72,14 +72,14 @@ public class StringOps {
     }
 
     public static String camelCase (String string) {
-        String news =" ";
+        String news ="";
         char ch = ' ';
         String substring1 = "";
-        for (int j=0; j < string.length(); j++) 
+        for (int j=0; j < string.length(); j++) //in case of spaces
         {
             if (string.charAt(j) != ' ')
             {
-                substring1 = string.substring(j);
+                substring1 = string.substring(j-1);
                 j=string.length();
             }
         }
