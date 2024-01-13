@@ -36,9 +36,6 @@ public class StringOps {
             System.out.print(arr[i]+"}");
             
         }
-        
-        
-        
     }
 
     public static String capVowelsLowRest (String string) {
@@ -79,7 +76,7 @@ public class StringOps {
         {
             if (string.charAt(j) != ' ')
             {
-                substring1 = string.substring(j-1);
+                substring1 = string.substring(j);
                 j=string.length();
             }
         }
@@ -91,12 +88,10 @@ public class StringOps {
                 }
                 else news += ch;
 
-        
-       
         for (int k = 1 ; k < substring1.length(); k++)
         {
             ch = substring1.charAt(k);
-            if (substring1.charAt(k)== ' ')
+            if (ch == ' ' && k+1 < substring1.length())
             {
                 ch = substring1.charAt(k+1);
                 if ( ((ch >= 'A') && (ch <= 'Z'))) // if its capital
