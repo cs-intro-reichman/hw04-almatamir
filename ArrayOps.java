@@ -35,12 +35,10 @@ public class ArrayOps {
         int newmax =0;
         for (int i=0;i<array.length;i++)
         {
-            if (array[i]!= max && newmax < array[i])
-            {
-                newmax = array[i];
-            
-            }
-
+            if (array[i] == max)
+            array[i] = 0;
+            if (newmax< array[i])
+            newmax = array[i];
         }
         return newmax;
     }
