@@ -69,55 +69,61 @@ public class StringOps {
     }
 
     public static String camelCase (String string) {
-        String news ="";
-        char ch = ' ';
-        String substring1 = "";
-        for (int j=0; j < string.length(); j++) //in case of spaces
+        boolean stop = true;
+        String newString ="";
+        int i;
+        // SKIP FIRST SPACES
+        for (i=0; i < string.length(); i++) //in case of spaces
         {
-            if (string.charAt(j) != ' ')
-            {
-                substring1 = string.substring(j);
-                j=string.length();
-            }
+            if (string.charAt(i) != ' ')
+                break;
         }
-        ch = substring1.charAt(0);
+        char ch = string.charAt(i);
+
+        // System.out.println(string.substring(j));
         if ( ((ch >= 'A') && (ch <= 'Z'))) //fixes first letter
                 {
                     char lowercaseChar = (char) (ch + ('a' - 'A')); // turns to small letters
-                    news += lowercaseChar;
+                    newString += lowercaseChar;
                 }
-                else news += ch;
+        else newString += ch;
+        boolean spaceOn = false;
+        int index = i + 1;
 
-        for (int k = 1 ; k < substring1.length(); k++)
-        {
-            ch = substring1.charAt(k);
-            if (ch == ' ' && k+1 < substring1.length())
-            {
-                ch = substring1.charAt(k+1);
-                if ( ((ch >= 'A') && (ch <= 'Z'))) // if its capital
-                {
-                    news+= ch;
-                    k++;
-                }
-                else 
-                {
-                   char uppercaseChar = (char) (ch + ('A' - 'a')); // turns to capital letters
-                   news += uppercaseChar;
-                   k++;
-                }
+        while (index < string.length()) {
+            if (string.charAt(index) == ' ') {
+                spaceOn = true;
+                index++;
+                continue;
             }
-            else if ( ((ch >= 'A') && (ch <= 'Z'))) // if its capital
-              {
-                char lowercaseChar = (char) (ch + ('a' - 'A')); // turns to small letters
-                news += lowercaseChar;
-              }
-             else news+= ch;                
-            
-            
-            
+
+            ch = string.charAt(index);
+            if (spaceOn) {
+                // turn now to big letter
+
+                newString += toUpp(ch);
+            } else {
+                newString += toLow(ch);
+            }
+
+            spaceOn = false;
+            index++;
         }
-        return news;
+        return newString;
+
+        
     }
+    public static char toUpp(char ch) {
+        return (char) (ch + ('A' - 'a')); 
+     }
+ 
+  public static char toLow(char ch) {
+         if ( ((ch >= 'A') && (ch <= 'Z'))) //fixes first letter
+                 {
+                     return (char) (ch + ('a' - 'A')); // turns to small letters
+                 }
+         return ch;
+     }
 
     public static int[] allIndexOf (String string, char chr) {
         int countch = 0;
