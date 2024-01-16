@@ -26,21 +26,25 @@ public class ArrayOps {
     }
 
     public static int secondMaxValue(int [] array) {
-        int max =0; 
-        for (int i=0;i<array.length;i++)
-        {
-            if (max<array[i])
-            max = array[i];
+        int n = array.length;
+        int maxV = 0;
+        int secondMax = 0;
+        // checks on each element of the array the following conditions
+        for (int i = 0; i < n; i++) {
+            // if the current number is bigger than the max number
+            // set secondmax to max number
+            // set max to current number
+            if (array[i] > maxV || array[i] == maxV) {
+                secondMax = maxV;
+                maxV = array[i];
+            }
+            // else if: current number is bigger than second max and not equal to max
+            // set secondmax to current number
+            else if (array[i] > secondMax && array[i] != maxV) {
+                secondMax = array[i];
+            }
         }
-        int newmax =0;
-        for (int i=0;i<array.length;i++)
-        {
-            if (array[i] == max)
-            array[i] = 0;
-            if (newmax< array[i])
-            newmax = array[i];
-        }
-        return newmax;
+        return secondMax;
     }
     public static boolean inArray(int [] array, int num) {
 
