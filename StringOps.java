@@ -114,16 +114,24 @@ public class StringOps {
         
     }
     public static char toUpp(char ch) {
-        return (char) (ch + ('A' - 'a')); 
-     }
+        char uppercaseChar = ch; // Default to the original character if not a lowercase letter
+    
+        if (ch >= 'a' && ch <= 'z') {
+            uppercaseChar = (char) (ch + ('A' - 'a')); // Convert to uppercase
+        }
+    
+        return uppercaseChar;
+    }
  
-  public static char toLow(char ch) {
-         if ( ((ch >= 'A') && (ch <= 'Z'))) //fixes first letter
-                 {
-                     return (char) (ch + ('a' - 'A')); // turns to small letters
-                 }
-         return ch;
-     }
+    public static char toLow(char ch) {
+        char lowercaseChar = ch; // Default to the original character if not an uppercase letter
+    
+        if (ch >= 'A' && ch <= 'Z') {
+            lowercaseChar = (char) (ch + ('a' - 'A')); // Convert to lowercase
+        }
+    
+        return lowercaseChar;
+    }
 
     public static int[] allIndexOf (String string, char chr) {
         int countch = 0;
